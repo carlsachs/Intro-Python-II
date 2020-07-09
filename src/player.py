@@ -4,3 +4,6 @@ class Player():
     def __init__(self, name, current_room):
         self.name = name
         self.current_room = current_room
+    # def move(self, user_input):
+    #     if getattr(self.current_room, f'{user_input}_to'):
+    #         self.current_room = getattr(self.current_room, f'{user_input}_to')

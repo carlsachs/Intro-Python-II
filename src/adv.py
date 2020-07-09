@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+import textwrap
 
 # Declare all the rooms
 
@@ -40,6 +42,9 @@ room['treasure'].s_to = room['narrow']
 # Make a new player object that is currently in the 'outside' room.
 
 player = Player("Carl", room['outside'])
+current_room = player.current_room
+
+print(player)
 
 # Write a loop that:
 #
@@ -51,3 +56,46 @@ player = Player("Carl", room['outside'])
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+user_is_playing = True
+
+while user_is_playing:
+    print(player.name, "is in the ", player.current_room.name)
+
+    for line in textwrap.wrap(player.current_room.description, 40):
+        print(line)
+
+    user_input = input("Which way would like to go? (n/e/s/w)")
+
+    if user_input == "n":
+        print("You've selected North!")
+        if current_room.n_to is not None:
+            player.current_room = current_room.n_to
+            print(f"You are now in the {player.current_room.name}! Congratulations {player.name}!")
+        else: 
+            print("Sorry, this is a no go!")
+    if user_input == "e":
+        print("You've selected East!")
+        if current_room.e_to is not None:
+            player.current_room = current_room.e_to
+            print(f"You are now in the {player.current_room.name}! Congratulations {player.name}!")
+        else: 
+            print("Sorry, this is a no go!")
+    if user_input == "s":
+        print("You've selected South!")
+        if current_room.s_to is not None:
+            player.current_room = current_room.s_to
+            print(f"You are now in the {player.current_room.name}! Congratulations {player.name}!")
+        else: 
+            print("Sorry, this is a no go!")
+    if user_input == "w":
+        print("You've selected West!")
+        if current_room.w_to is not None:
+            player.current_room = current_room.w_to
+            print(f"You are now in the {player.current_room.name}! Congratulations {player.name}!")
+        else: 
+            print("Sorry, this is a no go!")
+
+
+    
+    user_is_playing = True
